@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 @router.get("/", response_model = schemas.TotalsOut)
-def get_totals(db: Session = Depends(get_db)):
+async def get_totals(db: Session = Depends(get_db)):
     total_expenses = crud.get_total_expenses(db)
     total_salary = crud.get_total_salary(db)
     remaining_amount = total_salary - total_expenses
